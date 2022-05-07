@@ -1,20 +1,49 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Context;
 import com.example.demo.model.Event;
+import com.example.demo.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class EventService {
 
     @Autowired
-    private Context context;
+    public EventRepository eventRepository;
+/*
+    void save(Event event){
 
-    public List<Event> getAllEvents() {
-        return context.getEvents();
     }
+
+    void saveAll(Iterable<Event> events){
+
+    }
+
+    Event findById(UUID id){
+
+    }
+
+    boolean existsById(UUID id){
+
+        return true
+    }
+
+    void deleteById(UUID id){
+
+    }
+
+    void delete(Event event){
+
+    }
+
+    void deleteAll(){
+
+    }
+
+ */
 
 }

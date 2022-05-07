@@ -1,9 +1,6 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -15,21 +12,8 @@ public class Person {
     private UUID id;
     private String firstName;
     private String lastName;
-    private Event event;
-
     public Person() {
-        this.event = new Event();
-    }
 
-    public Person(UUID id, String firstName, String lastName, Event event) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.event = event;
-    }
-
-    public Person(UUID id, String firstName, String lastName) {
-        this(id, firstName, lastName, null);
     }
 
     @Id
@@ -45,25 +29,17 @@ public class Person {
         return lastName;
     }
 
-    public Event getEvent() {
-        return event;
-    }
-
     public void setId(UUID id) {
         this.id = id;
     }
 
-    public void setFirstName(String firstName) {
+    public Person setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
-    public void setLastName(String lastName) {
+    public Person setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
-
-    public void setEvent(Event event) {
-        this.event = event;
-    }
-
-
 }

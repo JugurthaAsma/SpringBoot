@@ -16,25 +16,26 @@ import java.util.UUID;
 public class PersonController extends BaseController {
 
     @Autowired
-    PersonService personService;
+    private PersonService personService;
 
     @GetMapping(value = {"/persons"})
     public String showPersonListPage(Model model) {
-        model.addAttribute("persons", personService.getAllPersons());
+        model.addAttribute("persons", personService.personRepository.findAll());
         model.addAttribute("newPerson", new Person());
-        return "person:/personList";
+
+        return "person/personList";
     }
 
     @PostMapping(value = {"/person"})
     public String AddPerson(Model model, Person person) {
         person.setId(UUID.randomUUID());
-        personService.addPerson(person);
+        personService.personRepository.save(person);
         return showPersonListPage(model);
     }
 
-    @PostMapping(value = {"/person/delete/{id}"})
+    @DeleteMapping(value = {"/person/{id}"})
     public String deletePerson(Model model, @PathVariable("id") UUID id) {
-        personService.deletePerson(id);
+        personService.personRepository.deleteById(id);
         return showPersonListPage(model);
     }
 

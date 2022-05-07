@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import com.example.demo.service.EventService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class EventController {
@@ -14,14 +15,14 @@ public class EventController {
 
     @GetMapping(value = {"/events"})
     public String showPersonListPage(Model model) {
-        model.addAttribute("events", eventService.getAllEvents());
+        model.addAttribute("events", eventService.eventRepository.findAll());
         return "event/eventList";
     }
 
-    @GetMapping(value = {"/event/add"})
+    @PostMapping(value = {"/event"})
     public String showAddPersonPage(Model model) {
 
-        return "event/addEvent";
+        return showPersonListPage(model);
     }
 
 }

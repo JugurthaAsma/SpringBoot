@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Context;
 import com.example.demo.model.Person;
+import com.example.demo.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +12,15 @@ import java.util.UUID;
 public class PersonService {
 
     @Autowired
-    private Context context;
+    public PersonRepository personRepository;
 
+
+
+
+
+    /*
     public List<Person> getAllPersons() {
-        return context.getPersons();
+        return getPersons();
     }
 
     public void addPerson(Person person) {
@@ -24,5 +29,9 @@ public class PersonService {
 
     public void deletePerson(UUID id) {
         context.deletePerson(id);
+
+
     }
+
+     */
 }

@@ -8,45 +8,6 @@
 <body>
     <h1>Persons List</h1>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">First name</th>
-            <th scope="col">Last name</th>
-            <!-- <th scope="col">Event name</th> -->
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-
-
-            <tr th:each="person : ${persons}">
-                <th scope="row">[[${person.id}]]</th>
-                <td>[[${person.firstName}]]</td>
-                <td>[[${#strings.toUpperCase(person.lastName)}]]</td>
-                <!-- <td>[[${person.event.name}]]</td> -->
-                <td>
-                    <form
-                            th:action="@{/person}"
-                            th:method="PUT"
-                            class="form-group"
-                    >
-                        <button type="submit" class="btn btn-warning" ><span>Edit</span></button>
-                    </form>
-                </td>
-                <td>
-                    <form
-                            th:action="@{/person/delete/{id}(id=${person.id})}"
-                            th:method="POST"
-                            class="form-group"
-                    >
-                        <button type="submit" class="btn btn-danger" ><span>X</span></button>
-                    </form>
-                </td>
-            </tr>
-
             <form
                     th:action="@{/person}"
                     th:method="POST"
@@ -68,8 +29,49 @@
                     </div>
                 </div>
             </form>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+            <tr th:each="person : ${persons}">
+                <th scope="row">[[${person.id}]]</th>
+                <td>[[${person.firstName}]]</td>
+                <td>[[${#strings.toUpperCase(person.lastName)}]]</td>
+                <td>
+                    <form
+                            th:action="@{/person}"
+                            th:method="PUT"
+                            class="form-group"
+                    >
+                        <button type="submit" class="btn btn-warning" >Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form
+                            th:action="@{/person/{id}(id=${person.id})}"
+                            th:method="DELETE"
+                            class="form-group"
+                    >
+                        <button class="btn btn-danger" >X</button>
+                    </form>
+                </td>
+            </tr>
+
+
         </tbody>
     </table>
+
+
 
 </body>
 </html>
